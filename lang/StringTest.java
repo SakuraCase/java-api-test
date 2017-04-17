@@ -2,12 +2,11 @@ package lang;
 
 public class StringTest {
 	public static void main(String[] args) {
-		test1();
+		String s = "abcde";
+		test2(s);
 	}
 
-	public static void test1() {
-		String s = "abcde";
-
+	public static void test1(String s) {
 		print(s.charAt(1));           // -> b
 		print(s.codePointAt(1));      // -> 98
 		print(s.codePointBefore(1));  // -> 97
@@ -43,6 +42,24 @@ public class StringTest {
 		print(s.contentEquals(sb));           // -> true
 		print(s==sb.toString()? true: false); // -> false
 	}
+
+	public static void test2(String s) {
+		// 数値をStringに変えたりするValueOfと同等らしい
+		char[] c = {'x', 'y', 'z'};
+		String hoge = String.copyValueOf(c, 1, 2);
+		print(hoge);                           // -> yz
+		for(char x: c){System.out.print(x);}   // -> xyz
+		c[1] = 'a';
+		for(char x: c){System.out.print(x);}   // -> xaz
+		print(hoge);                           // -> yz
+
+
+		print(s);                 // -> abcde
+		print(s.endsWith("a"));   // -> false
+		print(s.endsWith("e"));   // -> true
+		print(s.endsWith("de"));  // -> true
+	}
+
 
 	public static void print(Object o) {
 		System.out.println(o);
