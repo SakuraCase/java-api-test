@@ -3,7 +3,7 @@ package lang;
 public class StringTest {
 	public static void main(String[] args) {
 		String s = "abcde";
-		test2(s);
+		test3(s);
 	}
 
 	public static void test1(String s) {
@@ -60,8 +60,26 @@ public class StringTest {
 		print(s.endsWith("de"));  // -> true
 	}
 
+	public static void test3(String s) {
+		// stringの好きな部分をchar[]の好きな部分に入れられる
+		char[] c1 = {'x', 'y', 'z'};
+		s.getChars(0, 2, c1, 0);
+		printArrayChar(c1);            // -> abz
+		char[] c2 = {'x', 'y', 'z'};
+		s.getChars(1, 2, c2, 1);       // -> xbz
+		printArrayChar(c2);
+
+
+	}
+
 
 	public static void print(Object o) {
 		System.out.println(o);
+	}
+
+	public static void printArrayChar(char[] ac) {
+		for(char c: ac) {
+			print(c);
+		}
 	}
 }
