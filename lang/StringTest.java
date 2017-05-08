@@ -1,5 +1,8 @@
 package lang;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class StringTest {
 	public static void main(String[] args) {
 		String s = "abcde";
@@ -69,7 +72,28 @@ public class StringTest {
 		s.getChars(1, 2, c2, 1);       // -> xbz
 		printArrayChar(c2);
 
+		print(s.indexOf("b"));           // -> 1
+		print(s.lastIndexOf("b"));       // -> 1
+		print("abcdea".indexOf("a", 1)); // -> 5
 
+		// 文字列のプールが既にあればそれを返してくれる
+		print(s.intern());               // -> abcde
+		String s2 = new String("abcde");
+		print(s == s2);                  // -> false
+		print(s == s2.intern());         // -> true
+
+		print("".isEmpty());             // -> true
+
+		// windowsのほうで動かせなかったので一時保留(java ver 1.8.0_131)
+		// List<String> strings = new ArrayList<>();
+		// strings.add("hoge");
+		// strings.add("fuga");
+		// strings.add("foo");
+		// print(String.join(" ", strings));
+
+		print(s.matches("[a-z]"));     // -> false
+		print(s.matches("[a-z]*"));    // -> true
+		print(s.matches("^a.*e$"));    // -> true
 	}
 
 
