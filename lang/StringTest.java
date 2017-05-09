@@ -94,6 +94,30 @@ public class StringTest {
 		print(s.matches("[a-z]"));     // -> false
 		print(s.matches("[a-z]*"));    // -> true
 		print(s.matches("^a.*e$"));    // -> true
+
+		// sのインデックス1以降と、abcdのインデックス1以降が一致するか
+		print(s.regionMatches(1, "abcd", 1, "abcd".length() - 1)); // -> true
+
+		// 部分文字列１つに対して置換したい場合にはFirstを使う
+		// 間違えてreplaceで意図しない動きをさせそう
+		print("xyz".replace("y", s));     // -> xabcdez
+		print("xxxaxxaaxx".replace('a', 'x'));          // -> xxxxxxxxxx
+		print("xxxaxxaaxx".replace("a", "xx"));         // -> xxxxxxxxxxxxx
+		print("xxxaxxaaxx".replace("xx", "a"));         // -> axaaaaa
+		print("xxxaxxaaxx".replaceAll("xx", "a"));      // -> axaaaaa
+		print("xxxaxxaaxx".replaceFirst("xx", "a"));    // -> axaxxaaxx
+		
+		print(s.startsWith("a"));      // -> true
+		print(s.startsWith("A"));      // -> false
+
+		print(s.substring(2));       // -> cde
+		print(s.substring(2, 3));    // -> c
+
+		print("abc".toUpperCase());  // -> ABC
+		print("aBc".toLowerCase());  // -> abc
+		print("   a bc   ".trim());  // -> a bc
+		print("   a bc   ".replace(" ", ""));  // -> abc
+		print("   a bc   ".intern());          // ->   a bc
 	}
 
 
